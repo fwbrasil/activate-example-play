@@ -7,7 +7,6 @@ import play.api.data.Forms._
 import anorm._
 import views._
 import models._
-import net.fwbrasil.activate.storage.memory.MemoryStorage
 import net.fwbrasil.activate.ActivateContext
 import net.fwbrasil.activate.play.EntityForm
 import net.fwbrasil.activate.play.EntityForm._
@@ -52,7 +51,7 @@ object Application extends Controller {
 	def list(page: Int, orderBy: Int, filter: String) = Action { implicit request =>
 		transactional {
 			Ok(html.list(
-				Computer.list(page = page, orderBy = orderBy, filter = ("%" + filter + "%")),
+				Computer.list(page = page, orderBy = orderBy, filter = ("*" + filter + "*")),
 				orderBy, filter))
 		}
 	}

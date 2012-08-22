@@ -1,7 +1,5 @@
 package models
 
-import net.fwbrasil.activate.storage.memory.MemoryStorage
-import net.fwbrasil.activate.ActivateContext
 import net.fwbrasil.activate.play.EntityForm
 import java.util.Date
 
@@ -27,29 +25,33 @@ case class Page[A](items: Seq[A], page: Int, offset: Long, total: Long) {
 }
 
 object Computer {
-	def list(page: Int = 0, pageSize: Int = 10, orderBy: Int = 1, filter: String = "%"): Page[(Computer, Option[Company])] = transactional {
-		val navigator = paginatedQuery {
-			(c: Computer) =>
-				where(c.name isNotNull) select (c) orderBy {
-					scala.math.abs(orderBy) match {
-						case 3 =>
-							if (orderBy < 0)
-								c.introduced desc
-							else
-								c.introduced asc
-						case 4 =>
-							if (orderBy < 0)
-								c.discontinued desc
-							else
-								c.discontinued asc
-						case other =>
-							if (orderBy < 0)
-								c.name desc
-							else
-								c.name asc
-					}
-				}
-		}.navigator(pageSize)
+	def list(page: Int = 0, pageSize: Int = 10, orderBy: Int = 1, filter: String = "*"): Page[(Computer, Option[Company])] = transactional {
+		val unordered =
+			paginatedQuery {
+				(c: Computer) =>
+					where(c.name like filter) select (c)
+			}
+		val ordered =
+			orderBy.abs match {
+				case 2 =>
+					unordered.orderBy(_.name)
+				case 3 =>
+					unordered.orderBy(_.introduced)
+				case 4 =>
+					unordered.orderBy(_.discontinued)
+				case 5 =>
+					unordered.orderBy(_.company.map(_.name))
+			}
+
+		val directionOrdered =
+			if (orderBy < 0)
+				ordered.reverse
+			else
+				ordered
+
+		val navigator =
+			directionOrdered.navigator(pageSize)
+
 		if (navigator.numberOfResults > 0)
 			Page(navigator.page(page).map(c => (c, c.company)), page, page * pageSize, navigator.numberOfResults)
 		else

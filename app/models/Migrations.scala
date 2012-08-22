@@ -4,6 +4,7 @@ import computerPersistenceContext._
 import net.fwbrasil.activate.migration.Migration
 import scala.collection.mutable.{ Map => MutableMap }
 import java.util.Date
+import java.text.SimpleDateFormat
 
 class CreateSchema extends Migration {
 	def timestamp = 201206301707l
@@ -70,11 +71,13 @@ class SeedData extends Migration {
 			companies += (41 -> new Company("Research In Motion"))
 			companies += (42 -> new Company("Samsung Electronics"))
 
+			val dateFormat = new SimpleDateFormat("yyyy-MM-dd")
+
 				//Yes, I am lazy!
 				implicit def intToCompanyOption(i: Int) =
 					companies.get(i)
 				implicit def stringToDateOption(s: String) =
-					Option(new Date())
+					Option(dateFormat.parse(s))
 
 			new Computer("MacBook Pro 15.4 inch", None, None, 1);
 			new Computer("CM-2a", None, None, 2);
