@@ -77,7 +77,7 @@ object Application extends Controller {
 	def update(id: String) = Action { implicit request =>
 		transactional {
 			computerForm.bindFromRequest.fold(
-				formWithErrors => BadRequest(html.editForm(id, formWithErrors.asInstanceOf[EntityForm[Computer]])),
+				formWithErrors => BadRequest(html.editForm(id, formWithErrors)),
 				computerData => {
 					val computer = computerData.updateEntity(id)
 					Home.flashing("success" -> "Computer %s has been updated".format(computer.name))
@@ -100,7 +100,7 @@ object Application extends Controller {
 	def save = Action { implicit request =>
 		transactional {
 			computerForm.bindFromRequest.fold(
-				formWithErrors => BadRequest(html.createForm(formWithErrors.asInstanceOf[EntityForm[Computer]])),
+				formWithErrors => BadRequest(html.createForm(formWithErrors)),
 				computerData => {
 					val computer = computerData.createEntity
 					Home.flashing("success" -> "Computer %s has been created".format(computer.name))
