@@ -13,8 +13,8 @@ object ApplicationBuild extends Build {
   	    "fwbrasil.net" at "http://fwbrasil.net/maven/"
   	)
   	
-  	val activateCore = "net.fwbrasil" %% "activate-core" % "1.0-SNAPSHOT"
-  	val activatePlay = "net.fwbrasil" %% "activate-play" % "1.0-SNAPSHOT"
+  	val activateCore = "net.fwbrasil" %% "activate-core" % "1.0"
+  	val activatePlay = "net.fwbrasil" %% "activate-play" % "1.0"
 
     val main = PlayProject(appName, appVersion, appDependencies, mainLang = SCALA).settings(
       // Add your own project settings here
