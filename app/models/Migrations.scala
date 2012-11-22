@@ -7,9 +7,7 @@ import java.util.Date
 import java.text.SimpleDateFormat
 
 class CreateSchema extends Migration {
-	def timestamp = 201206301707l
-	def name = "TimedThresholdsMigration"
-	def developers = List("fwbrasil")
+	def timestamp = 201210281913l
 
 	def up = {
 		removeAllEntitiesTables
@@ -21,9 +19,7 @@ class CreateSchema extends Migration {
 
 class SeedData extends Migration {
 
-	def timestamp = 201206301707l
-	def name = "Seed data migration"
-	def developers = List("fwbrasil")
+	def timestamp = 201210281914l
 
 	def up = {
 		customScript {
@@ -599,7 +595,6 @@ class SeedData extends Migration {
 			new Computer("National Law Enforcement System", None, None, None);
 			new Computer("BlackBerry PlayBook", None, None, 42);
 			new Computer("Barnes & Noble nook", "2009-10-20", None, None);
-			new Computer("SAM Coupé", None, None, None);
 			new Computer("HTC Dream", "2008-10-22", None, 41);
 			new Computer("Samsung Galaxy Tab", "2010-09-02", None, 43);
 			new Computer("BlackBerry PlayBook", "2010-09-27", None, 42);

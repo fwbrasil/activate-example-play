@@ -11,7 +11,6 @@ import net.fwbrasil.activate.ActivateContext
 import net.fwbrasil.activate.play.EntityForm
 import net.fwbrasil.activate.play.EntityForm._
 import java.util.Date
-
 import models.computerPersistenceContext._
 
 /**

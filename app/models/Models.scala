@@ -25,6 +25,7 @@ case class Page[A](items: Seq[A], page: Int, offset: Long, total: Long) {
 }
 
 object Computer {
+
 	def list(page: Int = 0, pageSize: Int = 10, orderBy: Int = 1, filter: String = "*"): Page[(Computer, Option[Company])] = transactional {
 		val unordered =
 			paginatedQuery {
