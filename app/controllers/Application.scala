@@ -4,7 +4,6 @@ import play.api._
 import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
-import anorm._
 import views._
 import models._
 import net.fwbrasil.activate.ActivateContext
