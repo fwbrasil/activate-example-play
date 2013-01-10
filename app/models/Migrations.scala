@@ -69,11 +69,11 @@ class SeedData extends Migration {
 
 			val dateFormat = new SimpleDateFormat("yyyy-MM-dd")
 
-				//Yes, I am lazy!
-				implicit def intToCompanyOption(i: Int) =
-					companies.get(i)
-				implicit def stringToDateOption(s: String) =
-					Option(dateFormat.parse(s))
+			//Yes, I am lazy!
+			implicit def intToCompanyOption(i: Int) =
+				companies.get(i)
+			implicit def stringToDateOption(s: String) =
+				Option(dateFormat.parse(s))
 
 			new Computer("MacBook Pro 15.4 inch", None, None, 1);
 			new Computer("CM-2a", None, None, 2);
