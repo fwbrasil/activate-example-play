@@ -12,9 +12,9 @@ object ApplicationBuild extends Build {
         "Local Maven Repository" at "file://"+Path.userHome+"/.m2/repository"
   	)
   	
-  	val activateCore = "net.fwbrasil" %% "activate-core" % "1.2-SNAPSHOT"
-  	val activatePlay = "net.fwbrasil" %% "activate-play" % "1.2-SNAPSHOT"
-  	val activateJdbc = "net.fwbrasil" %% "activate-jdbc" % "1.2-SNAPSHOT"
+  	val activateCore = "net.fwbrasil" %% "activate-core" % "1.2"
+  	val activatePlay = "net.fwbrasil" %% "activate-play" % "1.2"
+  	val activateJdbc = "net.fwbrasil" %% "activate-jdbc" % "1.2"
     val mysql = "mysql" % "mysql-connector-java" % "5.1.16"
 
     val appDependencies = Seq(
