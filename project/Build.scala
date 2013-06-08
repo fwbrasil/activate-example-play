@@ -8,13 +8,13 @@ object ApplicationBuild extends Build {
     val appVersion      = "1.0"
         
     val customResolvers = Seq(
-  	    "fwbrasil.net" at "http://fwbrasil.net/maven/",
-        "Local Maven Repository" at "file://"+Path.userHome+"/.m2/repository"
+        "Local Maven Repository" at "file://"+Path.userHome+"/.m2/repository",
+  	    "fwbrasil.net" at "http://fwbrasil.net/maven/"
   	)
   	
-  	val activateCore = "net.fwbrasil" %% "activate-core" % "1.2"
-  	val activatePlay = "net.fwbrasil" %% "activate-play" % "1.2"
-  	val activateJdbc = "net.fwbrasil" %% "activate-jdbc" % "1.2"
+  	val activateCore = "net.fwbrasil" %% "activate-core" % "1.3-SNAPSHOT"
+  	val activatePlay = "net.fwbrasil" %% "activate-play" % "1.3-SNAPSHOT"
+  	val activateJdbc = "net.fwbrasil" %% "activate-jdbc" % "1.3-SNAPSHOT"
     val mysql = "mysql" % "mysql-connector-java" % "5.1.16"
 
     val appDependencies = Seq(

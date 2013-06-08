@@ -27,35 +27,36 @@ case class Page[A](items: Seq[A], page: Int, offset: Long, total: Long) {
 object Computer {
 
     def list(page: Int = 0, pageSize: Int = 10, orderBy: Int = 1, filter: String = "*"): Page[(Computer, Option[Company])] = transactional {
-        val unordered =
+        val pagination =
             paginatedQuery {
                 (c: Computer) =>
-                    where(c.name like filter) select (c)
+                    where(toUpperCase(c.name) like filter.toUpperCase) select (c) orderBy {
+                        orderBy match {
+                            case -2 =>
+                                c.name desc
+                            case -3 =>
+                                c.introduced desc
+                            case -4 =>
+                                c.discontinued desc
+                            case -5 =>
+                                c.company.map(_.name) desc
+                            case 2 =>
+                                c.name
+                            case 3 =>
+                                c.introduced
+                            case 4 =>
+                                c.discontinued
+                            case 5 =>
+                                c.company.map(_.name)
+                        }
+                    }
             }
-        val ordered =
-            orderBy.abs match {
-                case 2 =>
-                    unordered.orderBy(_.name)
-                case 3 =>
-                    unordered.orderBy(_.introduced)
-                case 4 =>
-                    unordered.orderBy(_.discontinued)
-                case 5 =>
-                    unordered.orderBy(_.company.map(_.name))
-            }
 
-        val directionOrdered =
-            if (orderBy < 0)
-                ordered.reverse
-            else
-                ordered
-
-        val navigator =
-            directionOrdered.navigator(pageSize)
-
-        if (navigator.numberOfResults > 0)
-            Page(navigator.page(page).map(c => (c, c.company)), page, page * pageSize, navigator.numberOfResults)
-        else
+        val navigator = pagination.navigator(pageSize)
+        if (navigator.numberOfResults > 0) {
+            val p = navigator.page(page)
+            Page(p.map(c => (c, c.company)), page, page * pageSize, navigator.numberOfResults)
+        } else
             Page(Nil, 0, 0, 0)
     }
 }
