@@ -12,9 +12,9 @@ object ApplicationBuild extends Build {
   	    "fwbrasil.net" at "http://fwbrasil.net/maven/"
   	)
   	
-  	val activateCore = "net.fwbrasil" %% "activate-core" % "1.3-SNAPSHOT"
-  	val activatePlay = "net.fwbrasil" %% "activate-play" % "1.3-SNAPSHOT"
-  	val activateJdbc = "net.fwbrasil" %% "activate-jdbc" % "1.3-SNAPSHOT"
+  	val activateCore = "net.fwbrasil" %% "activate-core" % "1.3"
+  	val activatePlay = "net.fwbrasil" %% "activate-play" % "1.3"
+  	val activateJdbc = "net.fwbrasil" %% "activate-jdbc" % "1.3"
     val mysql = "mysql" % "mysql-connector-java" % "5.1.16"
 
     val appDependencies = Seq(
