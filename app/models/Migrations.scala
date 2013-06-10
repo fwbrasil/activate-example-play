@@ -7,7 +7,8 @@ import java.util.Date
 import java.text.SimpleDateFormat
 
 class CreateSchema extends Migration {
-    def timestamp = 201210281913l
+    
+    def timestamp = System.currentTimeMillis
 
     def up = {
         removeAllEntitiesTables
@@ -19,7 +20,7 @@ class CreateSchema extends Migration {
 
 class SeedData extends Migration {
 
-    def timestamp = 201210281914l
+    def timestamp = System.currentTimeMillis + 100
 
     def up = {
         customScript {

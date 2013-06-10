@@ -35,7 +35,7 @@ class ApplicationSpec extends SpecificationWithJUnit {
                 val result = controllers.Application.list(0, 2, "")(FakeRequest())
 
                 status(result) must equalTo(OK)
-                contentAsString(result) must contain("565 computers found")
+                contentAsString(result) must contain("564 computers found")
 
             }
         }
@@ -46,7 +46,7 @@ class ApplicationSpec extends SpecificationWithJUnit {
                 val result = controllers.Application.list(0, 2, "Apple")(FakeRequest())
 
                 status(result) must equalTo(OK)
-                contentAsString(result) must contain("13 computers found")
+                contentAsString(result) must contain("12 computers found")
 
             }
         }
