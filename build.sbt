@@ -13,8 +13,8 @@ resolvers ++= Seq(
 libraryDependencies ++= Seq(
   jdbc,
   anorm,
-  "net.fwbrasil" %% "activate-play" % "1.4.1" exclude("org.scala-stm", "scala-stm_2.10.0"),
-  "net.fwbrasil" %% "activate-jdbc" % "1.4.1",
+  "net.fwbrasil" %% "activate-play" % "1.4.4" exclude("org.scala-stm", "scala-stm_2.10.0"),
+  "net.fwbrasil" %% "activate-jdbc" % "1.4.4",
   "mysql" % "mysql-connector-java" % "5.1.16"
 )
 
