@@ -6,3 +6,4 @@
 **.cache
 **.scala_dependencies
 bin
+application.log
