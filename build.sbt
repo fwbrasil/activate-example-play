@@ -1,23 +1,23 @@
-import play.Project._
-
 name := "activate-example-play"
 
 version := "1.0"
 
-resolvers ++= Seq(
-  "Local Maven Repository" at "file://"+Path.userHome+"/.m2/repository",
-  "Typesafe" at "http://repo.typesafe.com/typesafe/releases",
-  "fwbrasil.net" at "http://fwbrasil.net/maven/"
-)
+lazy val root = (project in file(".")).enablePlugins(PlayScala)
+
+scalaVersion := "2.10.4"
+
+val activateVersion = "1.6.3"
 
 libraryDependencies ++= Seq(
   jdbc,
   anorm,
-  "net.fwbrasil" %% "activate-play" % "1.6" exclude("org.scala-stm", "scala-stm_2.10.0"),
-  "net.fwbrasil" %% "activate-jdbc" % "1.6",
-  "mysql" % "mysql-connector-java" % "5.1.16"
+  cache,
+  ws,
+  "org.scalatestplus" %% "play" % "1.1.0" % "test",
+  "net.fwbrasil" %% "activate-play" % activateVersion,
+  "net.fwbrasil" %% "activate-jdbc" % activateVersion,
+  "net.fwbrasil" %% "activate-slick" % activateVersion,
+  "net.fwbrasil" %% "activate-core" % activateVersion
 )
-
-playScalaSettings
 
 Keys.fork in Test := false
